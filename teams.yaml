@@ -1,0 +1,40 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "ark.mckinsey.com/v1alpha1",
+            "kind": "Team",
+            "metadata": {
+                "creationTimestamp": "2025-11-29T17:57:42Z",
+                "generation": 1,
+                "name": "bp--health-companion-team",
+                "namespace": "default",
+                "resourceVersion": "78073",
+                "uid": "2edfb83b-2b78-4af4-888b-1dd6e6179307"
+            },
+            "spec": {
+                "description": "Multi-agent system that analyzes blood pressure readings and provides personalized dietary recommendations for hypertension management.",
+                "maxTurns": 10,
+                "members": [
+                    {
+                        "name": "safety-monitor-agent",
+                        "type": "agent"
+                    },
+                    {
+                        "name": "bp-data-analyser-agent",
+                        "type": "agent"
+                    },
+                    {
+                        "name": "nutrition-and-lifestyle-coach-agent",
+                        "type": "agent"
+                    }
+                ],
+                "strategy": "sequential"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

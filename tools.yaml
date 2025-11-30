@@ -1,0 +1,210 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "ark.mckinsey.com/v1alpha1",
+            "kind": "Tool",
+            "metadata": {
+                "annotations": {
+                    "ark.mckinsey.com/service": "ark-mcp"
+                },
+                "creationTimestamp": "2025-11-28T16:22:35Z",
+                "generation": 1,
+                "labels": {
+                    "mcp/server": "ark-mcp"
+                },
+                "name": "ark-mcp-list-agents",
+                "namespace": "default",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "ark.mckinsey.com/v1alpha1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "MCPServer",
+                        "name": "ark-mcp",
+                        "uid": "7dc09f63-346a-4bbc-9a86-fa7e82ab209f"
+                    }
+                ],
+                "resourceVersion": "2543",
+                "uid": "8e7439cd-2d9b-4c38-a707-0ee668844099"
+            },
+            "spec": {
+                "description": "List all agents in the specified namespace.\n\nReturns a list of agents with their basic information including name, description, \nmodel reference, and status.",
+                "inputSchema": {
+                    "properties": {
+                        "namespace": {
+                            "default": "default",
+                            "description": "Kubernetes namespace to list agents from",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "mcp": {
+                    "mcpServerRef": {
+                        "name": "ark-mcp",
+                        "namespace": "default"
+                    },
+                    "toolName": "list_agents"
+                },
+                "type": "mcp"
+            },
+            "status": {
+                "message": "Tool configuration is valid",
+                "state": "Ready"
+            }
+        },
+        {
+            "apiVersion": "ark.mckinsey.com/v1alpha1",
+            "kind": "Tool",
+            "metadata": {
+                "annotations": {
+                    "ark.mckinsey.com/service": "ark-mcp"
+                },
+                "creationTimestamp": "2025-11-28T16:22:35Z",
+                "generation": 1,
+                "labels": {
+                    "mcp/server": "ark-mcp"
+                },
+                "name": "ark-mcp-query-agent",
+                "namespace": "default",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "ark.mckinsey.com/v1alpha1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "MCPServer",
+                        "name": "ark-mcp",
+                        "uid": "7dc09f63-346a-4bbc-9a86-fa7e82ab209f"
+                    }
+                ],
+                "resourceVersion": "2545",
+                "uid": "e0f236bb-fed3-4dbe-8ba2-5fa8d4b26004"
+            },
+            "spec": {
+                "description": "Send a question to a specific agent and get the response.\n\nThis creates a Query resource targeting the specified agent, waits for completion,\nand returns the agent's response.",
+                "inputSchema": {
+                    "properties": {
+                        "agent": {
+                            "description": "Name of the agent to query",
+                            "type": "string"
+                        },
+                        "input": {
+                            "description": "The question or instruction to send to the agent",
+                            "type": "string"
+                        },
+                        "namespace": {
+                            "default": "default",
+                            "description": "Kubernetes namespace containing the agent",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "agent",
+                        "input"
+                    ],
+                    "type": "object"
+                },
+                "mcp": {
+                    "mcpServerRef": {
+                        "name": "ark-mcp",
+                        "namespace": "default"
+                    },
+                    "toolName": "query_agent"
+                },
+                "type": "mcp"
+            },
+            "status": {
+                "message": "Tool configuration is valid",
+                "state": "Ready"
+            }
+        },
+        {
+            "apiVersion": "ark.mckinsey.com/v1alpha1",
+            "kind": "Tool",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "ark-tenant",
+                    "meta.helm.sh/release-namespace": "default"
+                },
+                "creationTimestamp": "2025-11-28T16:12:26Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm",
+                    "ark.mckinsey.com/skip-webhook-validation": "true"
+                },
+                "name": "noop",
+                "namespace": "default",
+                "resourceVersion": "2353",
+                "uid": "9edd5d72-b84d-4d67-a6f5-f182eb681d4c"
+            },
+            "spec": {
+                "builtin": {
+                    "name": "noop"
+                },
+                "description": "A no-operation tool that does nothing and returns success",
+                "inputSchema": {
+                    "properties": {
+                        "message": {
+                            "description": "Optional message to include in the response",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "type": "builtin"
+            },
+            "status": {
+                "message": "Tool configuration is valid",
+                "state": "Ready"
+            }
+        },
+        {
+            "apiVersion": "ark.mckinsey.com/v1alpha1",
+            "kind": "Tool",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "ark-tenant",
+                    "meta.helm.sh/release-namespace": "default"
+                },
+                "creationTimestamp": "2025-11-28T16:12:26Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm",
+                    "ark.mckinsey.com/skip-webhook-validation": "true"
+                },
+                "name": "terminate",
+                "namespace": "default",
+                "resourceVersion": "2354",
+                "uid": "0e61fc7d-6a83-4a14-918a-f1103f846b8f"
+            },
+            "spec": {
+                "builtin": {
+                    "name": "terminate"
+                },
+                "description": "Terminates the conversation",
+                "inputSchema": {
+                    "properties": {
+                        "response": {
+                            "description": "The response to send before terminating the conversation",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "response"
+                    ],
+                    "type": "object"
+                },
+                "type": "builtin"
+            },
+            "status": {
+                "message": "Tool configuration is valid",
+                "state": "Ready"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
